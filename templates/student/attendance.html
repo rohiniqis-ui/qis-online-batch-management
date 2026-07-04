@@ -1,0 +1,12 @@
+{% extends base_template %}
+
+{% block content %}
+<div class="container py-4">
+  <h1 class="h3 mb-4">Attendance</h1>
+  <div class="table-responsive">
+    <table class="table table-striped"><thead class="table-light"><tr><th>Date</th><th>Session</th><th>Status</th><th>Remarks</th></tr></thead>
+      <tbody>{% for item in records %}<tr><td>{{ item.session.session_date }}</td><td>{{ item.session.title }}</td><td>{{ item.status }}</td><td>{{ item.remarks|default:"-" }}</td></tr>{% empty %}<tr><td colspan="4" class="text-center py-4">No attendance records.</td></tr>{% endfor %}</tbody>
+    </table>
+  </div>
+</div>
+{% endblock %}

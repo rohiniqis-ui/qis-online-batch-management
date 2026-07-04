@@ -1,0 +1,236 @@
+{% extends 'includes/admin/base.html' %}
+
+{% block content %}
+<div class="card shadow-sm border-0 mb-4" style="background-color: #300202;">
+
+    <div class="card-body d-flex justify-content-between align-items-center" >
+
+        <div>
+
+            <h3 class="fw-bold text-light mb-1">
+                {{ role.title }} Management
+            </h3>
+
+            <p class="text-light mb-0">
+                Manage all {{ role|lower }} accounts, permissions and status.
+            </p>
+
+        </div>
+
+        <a href="{% url 'admin:add_user' role %}"
+           class="btn btn-danger">
+
+            <i class="fas fa-plus-circle"></i>
+            Add {{ role.title }}
+
+        </a>
+
+    </div>
+
+</div>
+
+
+<div class="card shadow-sm border-0" style="background-color: #300202;">
+
+    <div class="card-header ">
+
+        <div class="d-flex justify-content-between align-items-center">
+
+            <h5 class="mb-0 text-light">
+
+                <i class="fas fa-users me-2 text-danger"></i>
+
+                {{ role.title }} Directory
+
+            </h5>
+
+            <span class="badge bg-danger">
+
+                {{ users|length }} Users
+
+            </span>
+
+        </div>
+
+    </div>
+
+    <div class="card-body p-4 ">
+
+        <table class="table table-hover align-middle p-2 mb-4">
+
+            <thead class="table" style="background-color: #422d2dd8; color: #eee;">
+
+                <tr>
+
+                    <th width="60">#</th>
+                    <th>User</th>
+                    <th>Email</th>
+                    <th>Phone</th>
+                    <th>Status</th>
+                    <th width="180">Actions</th>
+
+                </tr>
+
+            </thead>
+
+            <tbody>
+
+                {% for user in users %}
+
+                <tr>
+
+                    <td>
+                        {{ forloop.counter }}
+                    </td>
+
+                    <td>
+
+                        <div class="d-flex align-items-center">
+
+                            {% if user.profile_image %}
+
+                                <img src="{{ user.profile_image.url }}"
+                                     width="45"
+                                     height="45"
+                                     class="rounded-circle me-3">
+
+                            {% else %}
+
+                                <div class="avatar-box">
+
+                                    {{ user.first_name|first|upper }}
+
+                                </div>
+
+                            {% endif %}
+
+                            <div>
+
+                                <div class="fw-semibold">
+
+                                    {{ user.first_name }}
+                                    {{ user.last_name }}
+
+                                </div>
+
+                                <small class="text-light">
+
+                                    {{ user.username }}
+
+                                </small>
+
+                            </div>
+
+                        </div>
+
+                    </td>
+
+                    <td>{{ user.email }}</td>
+
+                    <td>{{ user.phone }}</td>
+
+                    <td>
+
+                        {% if user.status %}
+
+                            <span class="badge bg-success">
+
+                                Active
+
+                            </span>
+
+                        {% else %}
+
+                            <span class="badge bg-secondary">
+
+                                Inactive
+
+                            </span>
+
+                        {% endif %}
+
+                    </td>
+
+                    <td>
+
+                        <a href="{% url 'admin:edit_user' user.id %}"
+                           class="btn btn-outline-warning btn-sm">
+
+                            <i class="fas fa-edit"></i>
+
+                        </a>
+
+                        <a href="{% url 'admin:toggle_user_status' user.id %}"
+                           class="btn btn-outline-danger btn-sm">
+
+                            <i class="fas fa-power-off"></i>
+
+                        </a>
+
+                    </td>
+
+                </tr>
+
+                {% empty %}
+
+                <tr>
+
+                    <td colspan="6">
+
+                        <div class="text-center py-5">
+
+                            <i class="fas fa-users fa-3x text-muted mb-3"></i>
+
+                            <h6>
+                                No {{ role|lower }} found
+                            </h6>
+
+                        </div>
+
+                    </td>
+
+                </tr>
+
+                {% endfor %}
+
+            </tbody>
+
+        </table>
+
+    </div>
+
+</div>
+
+<style>
+
+.avatar-box{
+    width:45px;
+    height:45px;
+    border-radius:50%;
+    background:#dc3545;
+    color:white;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-weight:600;
+    margin-right:15px;
+}
+td{
+    color:#eee;
+}
+
+.table tbody td tr:hover{
+    color:#eee;
+    background:#e4cece;;
+}
+
+.card{
+    border-radius:12px;
+}
+
+.card-header{
+    border-bottom:1px solid #eee;
+}
+
+</style>
+{% endblock %}

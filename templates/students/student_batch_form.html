@@ -1,0 +1,56 @@
+{% extends base_template %}
+
+{% block content %}
+<div class="container py-4">
+  <div class="d-flex justify-content-between align-items-center mb-4">
+    <h1 class="h3 mb-0">{{ title }}</h1>
+    <a href="{% url 'students:student_detail' student.pk %}" class="btn btn-outline-secondary">Back</a>
+  </div>
+
+  {% if messages %}
+    {% for message in messages %}
+      <div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">
+        {{ message }}
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+      </div>
+    {% endfor %}
+  {% endif %}
+
+  <div class="card">
+    <div class="card-body">
+      <div class="mb-4">
+        <div><strong>students:</strong> {{ student.student_id }} - {{ student.user.get_full_name|default:student.user.username }}</div>
+        <div><strong>Current Batch:</strong> {{ student.batch|default:"No batch assigned" }}</div>
+      </div>
+
+      <form method="post" novalidate>
+        {% csrf_token %}
+        {% if form.non_field_errors %}
+          <div class="alert alert-danger">{{ form.non_field_errors }}</div>
+        {% endif %}
+
+        <div class="mb-3">
+          <label for="{{ form.batch.id_for_label }}" class="form-label">Batch</label>
+          {{ form.batch }}
+          {% for error in form.batch.errors %}
+            <div class="text-danger small">{{ error }}</div>
+          {% endfor %}
+        </div>
+
+        <div class="mb-3">
+          <label for="{{ form.request_note.id_for_label }}" class="form-label">Request Note</label>
+          {{ form.request_note }}
+          {% for error in form.request_note.errors %}
+            <div class="text-danger small">{{ error }}</div>
+          {% endfor %}
+        </div>
+
+        <div class="text-end">
+          <a href="{% url 'students:student_detail' student.pk %}" class="btn btn-outline-secondary">Cancel</a>
+          <button type="submit" class="btn btn-primary">{{ button_label }}</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+{% endblock %}

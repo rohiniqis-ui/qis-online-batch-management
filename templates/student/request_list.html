@@ -1,0 +1,16 @@
+{% extends base_template %}
+
+{% block content %}
+<div class="container py-4">
+  <div class="d-flex justify-content-between align-items-center mb-4">
+    <h1 class="h3 mb-0">Requests</h1>
+    <a href="{% url 'students:request_create' %}" class="btn btn-primary">New Request</a>
+  </div>
+  {% if messages %}{% for message in messages %}<div class="alert alert-{{ message.tags }}">{{ message }}</div>{% endfor %}{% endif %}
+  <div class="table-responsive">
+    <table class="table table-striped"><thead class="table-light"><tr><th>Date</th><th>To</th><th>Subject</th><th>Status</th><th>Response</th></tr></thead>
+      <tbody>{% for item in requests %}<tr><td>{{ item.created_at }}</td><td>{{ item.request_to }}</td><td>{{ item.subject }}</td><td>{{ item.status }}</td><td>{{ item.response|default:"-" }}</td></tr>{% empty %}<tr><td colspan="5" class="text-center py-4">No requests submitted.</td></tr>{% endfor %}</tbody>
+    </table>
+  </div>
+</div>
+{% endblock %}

@@ -1,0 +1,26 @@
+{% extends 'includes/students/base.html' %}
+
+{% block content %}
+<div class="card bg-dark text-white border-danger mb-4">
+  <div class="card-body">
+    <h2>Student Dashboard</h2>
+    <p>Access learning materials, track performance, manage fees, and communicate with your team.</p>
+  </div>
+</div>
+
+<div class="row g-3 mb-4">
+  <div class="col-md-3"><div class="card"><div class="card-body text-center"><h3>{{ syllabus_progress }}%</h3><p>Syllabus Progress</p></div></div></div>
+  <div class="col-md-3"><div class="card"><div class="card-body text-center"><h3>{{ attendance_percent }}%</h3><p>Attendance</p></div></div></div>
+  <div class="col-md-3"><div class="card"><div class="card-body text-center"><h3>{{ exam_count }}</h3><p>Exam Results</p></div></div></div>
+  <div class="col-md-3"><div class="card"><div class="card-body text-center"><h3>{{ unread_notifications }}</h3><p>Notifications</p></div></div></div>
+</div>
+
+<div class="row g-4">
+  <div class="col-md-6"><div class="card"><div class="card-body"><h5>Course Navigation</h5><ul><li><a href="{% url 'students:syllabus_view' %}">View syllabus structure</a></li><li>Track syllabus progression</li></ul></div></div></div>
+  <div class="col-md-6"><div class="card"><div class="card-body"><h5>Learning Resources</h5><ul><li><a href="{% url 'students:recording_list' %}">Access class recordings</a></li><li><a href="{% url 'students:session_list' %}">View session details</a></li></ul></div></div></div>
+  <div class="col-md-6"><div class="card"><div class="card-body"><h5>Performance</h5><ul><li>Attendance</li><li>Exam results</li><li>Assignment status</li></ul></div></div></div>
+  <div class="col-md-6"><div class="card"><div class="card-body"><h5>Finance</h5><ul><li>View fee details</li><li>Upload payment proof</li><li>Receive payment notifications</li></ul></div></div></div>
+  <div class="col-md-6"><div class="card"><div class="card-body"><h5>Feedback & Requests</h5><ul><li>Provide feedback</li><li>Submit requests to counselors or trainers</li></ul></div></div></div>
+  <div class="col-md-6"><div class="card"><div class="card-body"><h5>Events & Alerts</h5><ul><li>View upcoming events</li><li>Receive alerts</li></ul></div></div></div>
+</div>
+{% endblock %}

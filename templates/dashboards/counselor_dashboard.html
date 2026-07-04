@@ -1,0 +1,280 @@
+{% extends 'includes/counselor/base.html' %}
+
+{% block content %}
+
+
+<!-- Welcome Card -->
+<div class="welcome-card">
+    <h2>
+        <i class="fas fa-user-friends"></i>
+        Counselor Dashboard
+    </h2>
+
+    <p>
+        Manage student enrollment, monitor academic progress,
+        handle requests, review feedback, and provide continuous
+        support throughout the training lifecycle.
+    </p>
+</div>
+
+<!-- Statistics -->
+<div class="stats-grid">
+
+    <div class="stat-card">
+        <i class="fas fa-users"></i>
+        <h3>{{ total_students }}</h3>
+        <p>Total Students</p>
+    </div>
+
+    <div class="stat-card">
+        <i class="fas fa-layer-group"></i>
+        <h3>{{ active_batches }}</h3>
+        <p>Available Batches</p>
+    </div>
+
+    <div class="stat-card">
+        <i class="fas fa-circle-question"></i>
+        <h3>{{ pending_requests }}</h3>
+        <p>Pending Requests</p>
+    </div>
+
+    <div class="stat-card">
+        <i class="fas fa-comments"></i>
+        <h3>{{ feedback_count }}</h3>
+        <p>Feedback Received</p>
+    </div>
+
+</div>
+
+<!-- Modules -->
+<h3 class="section-title">
+    <i class="fas fa-th-large"></i>
+    Counselor Modules
+</h3>
+
+<div class="module-grid">
+
+    <!-- Student Management -->
+    <div class="module-card">
+
+        <div class="module-icon">
+            <i class="fas fa-user-graduate"></i>
+        </div>
+
+        <h3>Student Management</h3>
+
+        <ul>
+            <li><i class="fas fa-check"></i> Add Students</li>
+            <li><i class="fas fa-check"></i> Edit Student Details</li>
+            <li><i class="fas fa-check"></i> Remove Students</li>
+            <li><i class="fas fa-check"></i> Manage Student Records</li>
+        </ul>
+
+        <div class="module-actions">
+            <a href="#" class="small-btn">View Students</a>
+            <a href="#" class="small-btn">Add Student</a>
+        </div>
+
+    </div>
+
+    <!-- Batch Access -->
+    <div class="module-card">
+
+        <div class="module-icon">
+            <i class="fas fa-layer-group"></i>
+        </div>
+
+        <h3>Batch Access</h3>
+
+        <ul>
+            <li><i class="fas fa-check"></i> View Available Batches</li>
+            <li><i class="fas fa-check"></i> Batch Schedules</li>
+            <li><i class="fas fa-check"></i> Student Allocation</li>
+            <li><i class="fas fa-check"></i> Batch Availability</li>
+        </ul>
+
+        <div class="module-actions">
+            <a href="#" class="small-btn">View Batches</a>
+            <a href="#" class="small-btn">Assign Students</a>
+        </div>
+
+    </div>
+
+    <!-- Performance Monitoring -->
+    <div class="module-card">
+
+        <div class="module-icon">
+            <i class="fas fa-chart-line"></i>
+        </div>
+
+        <h3>Performance Monitoring</h3>
+
+        <ul>
+            <li><i class="fas fa-check"></i> Attendance Tracking</li>
+            <li><i class="fas fa-check"></i> Exam Results</li>
+            <li><i class="fas fa-check"></i> Skill Progress</li>
+            <li><i class="fas fa-check"></i> Support Alerts</li>
+        </ul>
+
+        <div class="module-actions">
+            <a href="#" class="small-btn">View Performance</a>
+            <a href="#" class="small-btn">Attendance</a>
+        </div>
+
+    </div>
+
+    <!-- Request Handling -->
+    <div class="module-card">
+
+        <div class="module-icon">
+            <i class="fas fa-circle-question"></i>
+        </div>
+
+        <h3>Request Handling</h3>
+
+        <ul>
+            <li><i class="fas fa-check"></i> Student Requests</li>
+            <li><i class="fas fa-check"></i> Approvals</li>
+            <li><i class="fas fa-check"></i> Escalations</li>
+            <li><i class="fas fa-check"></i> Resolution Tracking</li>
+        </ul>
+
+        <div class="module-actions">
+            <a href="#" class="small-btn">View Requests</a>
+            <a href="#" class="small-btn">Resolve</a>
+        </div>
+
+    </div>
+
+    <!-- Feedback -->
+    <div class="module-card">
+
+        <div class="module-icon">
+            <i class="fas fa-star"></i>
+        </div>
+
+        <h3>Feedback Monitoring</h3>
+
+        <ul>
+            <li><i class="fas fa-check"></i> Session Feedback</li>
+            <li><i class="fas fa-check"></i> Trainer Ratings</li>
+            <li><i class="fas fa-check"></i> Student Suggestions</li>
+            <li><i class="fas fa-check"></i> Improvements</li>
+        </ul>
+
+        <div class="module-actions">
+            <a href="#" class="small-btn">View Feedback</a>
+            <a href="#" class="small-btn">Analytics</a>
+        </div>
+
+    </div>
+
+    <!-- Communication -->
+    <div class="module-card">
+
+        <div class="module-icon">
+            <i class="fas fa-comments"></i>
+        </div>
+
+        <h3>Communication Center</h3>
+
+        <ul>
+            <li><i class="fas fa-check"></i> Chat with Students</li>
+            <li><i class="fas fa-check"></i> Chat with Trainers</li>
+            <li><i class="fas fa-check"></i> Chat with Managers</li>
+            <li><i class="fas fa-check"></i> Inbox History</li>
+        </ul>
+
+        <div class="module-actions">
+            <a href="#" class="small-btn">Open Chat</a>
+            <a href="#" class="small-btn">Inbox</a>
+        </div>
+
+    </div>
+
+</div>
+
+<!-- Bottom Section -->
+<div class="bottom-grid">
+
+    <!-- Recent Activity -->
+    <div class="panel">
+
+        <h3 class="section-title">
+            <i class="fas fa-clock"></i>
+            Recent Student Activities
+        </h3>
+
+        <div class="activity-item">
+            <i class="fas fa-user-plus"></i>
+            <div>
+                <h4>New Student Enrolled</h4>
+                <p>Rahul joined Python Full Stack Batch</p>
+            </div>
+        </div>
+
+        <div class="activity-item">
+            <i class="fas fa-star"></i>
+            <div>
+                <h4>Feedback Submitted</h4>
+                <p>Anjali submitted training feedback</p>
+            </div>
+        </div>
+
+        <div class="activity-item">
+            <i class="fas fa-exclamation-circle"></i>
+            <div>
+                <h4>Support Request</h4>
+                <p>Arjun requested batch transfer</p>
+            </div>
+        </div>
+
+        <div class="activity-item">
+            <i class="fas fa-chart-line"></i>
+            <div>
+                <h4>Performance Alert</h4>
+                <p>Attendance below 75% detected</p>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Status Panel -->
+    <div class="panel">
+
+        <h3 class="section-title">
+            <i class="fas fa-bell"></i>
+            Quick Status
+        </h3>
+
+        <ul class="status-list">
+
+            <li>
+                Pending Approvals
+                <span class="badge">12</span>
+            </li>
+
+            <li>
+                Support Requests
+                <span class="badge">18</span>
+            </li>
+
+            <li>
+                Need Attention
+                <span class="badge">7</span>
+            </li>
+
+            <li>
+                Unread Messages
+                <span class="badge">25</span>
+            </li>
+
+        </ul>
+
+    </div>
+
+</div>
+
+
+
+{% endblock %}

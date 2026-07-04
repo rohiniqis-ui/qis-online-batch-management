@@ -1,0 +1,20 @@
+{% extends base_template %}
+
+{% block content %}
+<div class="container py-4">
+  <div class="d-flex justify-content-between align-items-center mb-4">
+    <h1 class="h3 mb-0">Upload Payment Proof</h1>
+    <a href="{% url 'students:fee_details' %}" class="btn btn-outline-secondary">Fees</a>
+  </div>
+  <form method="post" enctype="multipart/form-data" class="card" novalidate>
+    {% csrf_token %}
+    <div class="card-body">
+      <p><strong>Fee:</strong> {{ fee.title }} - {{ fee.amount }}</p>
+      {% for field in form %}
+        <div class="mb-3"><label class="form-label" for="{{ field.id_for_label }}">{{ field.label }}</label>{{ field }}{% for error in field.errors %}<div class="text-danger small">{{ error }}</div>{% endfor %}</div>
+      {% endfor %}
+    </div>
+    <div class="card-footer text-end"><button type="submit" class="btn btn-primary">Upload Proof</button></div>
+  </form>
+</div>
+{% endblock %}

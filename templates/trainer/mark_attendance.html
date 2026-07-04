@@ -1,0 +1,45 @@
+{% extends base_template %}
+
+{% block content %}
+<div class="container py-4">
+  <div class="d-flex justify-content-between align-items-center mb-4">
+    <h1 class="h3 mb-0">Mark Attendance</h1>
+    <a href="{% url 'trainer:class_session_list' batch.id %}" class="btn btn-outline-secondary">Back</a>
+  </div>
+
+  <form method="post">
+    {% csrf_token %}
+    <div class="table-responsive">
+      <table class="table table-striped align-middle">
+        <thead class="table-light">
+          <tr>
+            <th>Student</th>
+            <th>Status</th>
+            <th>Remarks</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for row in student_rows %}
+            <tr>
+              <td>{{ row.student.student_id }} - {{ row.student.user.get_full_name|default:row.student.user.username }}</td>
+              <td>
+                <select name="status_{{ row.student.pk }}" class="form-select">
+                  <option value="Present" {% if row.attendance.status == "Present" %}selected{% endif %}>Present</option>
+                  <option value="Absent" {% if row.attendance.status == "Absent" %}selected{% endif %}>Absent</option>
+                  <option value="Late" {% if row.attendance.status == "Late" %}selected{% endif %}>Late</option>
+                </select>
+              </td>
+              <td><input type="text" name="remarks_{{ row.student.pk }}" value="{{ row.attendance.remarks }}" class="form-control"></td>
+            </tr>
+          {% empty %}
+            <tr><td colspan="3" class="text-center py-4">No students found.</td></tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+    <div class="text-end">
+      <button type="submit" class="btn btn-primary">Save Attendance</button>
+    </div>
+  </form>
+</div>
+{% endblock %}

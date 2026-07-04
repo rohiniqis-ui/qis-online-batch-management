@@ -1,0 +1,23 @@
+{% extends base_template %}
+
+{% block content %}
+<div class="container py-4">
+  <div class="d-flex justify-content-between align-items-center mb-4">
+    <h1 class="h3 mb-0">Session Details</h1>
+    <a href="{% url 'students:session_list' %}" class="btn btn-outline-secondary">Sessions</a>
+  </div>
+  <div class="card">
+    <div class="card-body">
+      <div class="row g-3">
+        <div class="col-md-6"><strong>Title:</strong> {{ session.title }}</div>
+        <div class="col-md-6"><strong>Date:</strong> {{ session.session_date }}</div>
+        <div class="col-md-6"><strong>Time:</strong> {{ session.start_time }}{% if session.end_time %} - {{ session.end_time }}{% endif %}</div>
+        <div class="col-md-6"><strong>Attendance:</strong> {{ attendance.status|default:"Not marked" }}</div>
+        <div class="col-md-6"><strong>Meeting:</strong> {% if session.meeting_link %}<a href="{{ session.meeting_link }}" target="_blank">Open meeting</a>{% else %}-{% endif %}</div>
+        <div class="col-md-6"><strong>Recording:</strong> {% if session.recording_url %}<a href="{{ session.recording_url }}" target="_blank">Open recording</a>{% else %}-{% endif %}</div>
+        <div class="col-12"><strong>Notes:</strong> {{ session.notes|default:"-"|linebreaksbr }}</div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

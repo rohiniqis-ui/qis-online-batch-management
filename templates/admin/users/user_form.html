@@ -1,0 +1,107 @@
+{% extends 'includes/admin/base.html' %}
+
+{% block content %}
+
+<div class="card" style="background-color: #300202; color: #fff;border: none;">
+
+    <div class="card-header" style="background-color: #300202; color: #fff;border: none;">
+        <h3>
+            {{ action.title }} {{ role.title }}
+        </h3>
+    </div>
+
+    <div class="card-body" style="background-color: #300202; color: #fff;border: none;">
+
+        <form method="POST"
+              enctype="multipart/form-data">
+
+            {% csrf_token %}
+
+            <div class="row">
+
+                <div class="col-md-6 mb-3">
+                    <label>First Name</label>
+                    <input type="text"
+                           name="first_name"
+                           class="form-control"
+                           value="{{ user_obj.first_name|default:'' }}" 
+                           style="background-color: #422d2dd8; color: #eee; border: none;"
+                           >
+                </div>
+
+                <div class="col-md-6 mb-3">
+                    <label>Last Name</label>
+                    <input type="text"
+                           name="last_name"
+                           class="form-control"
+                           value="{{ user_obj.last_name|default:'' }}"
+                           style="background-color: #422d2dd8; color: #eee; border: none;"
+                           >
+                </div>
+
+                <div class="col-md-6 mb-3">
+                    <label>Username</label>
+                    <input type="text"
+                           name="username"
+                           class="form-control"
+                           value="{{ user_obj.username|default:'' }}"
+                           style="background-color: #422d2dd8; color: #eee; border: none;"
+                           >
+                </div>
+
+                <div class="col-md-6 mb-3">
+                    <label>Email</label>
+                    <input type="email"
+                           name="email"
+                           class="form-control"
+                           value="{{ user_obj.email|default:'' }}"
+                           style="background-color: #422d2dd8; color: #eee; border: none;"
+                           >
+                </div>
+
+                <div class="col-md-6 mb-3">
+                    <label>Phone</label>
+                    <input type="text"
+                           name="phone"
+                           class="form-control"
+                           value="{{ user_obj.phone|default:'' }}"
+                           style="background-color: #422d2dd8; color: #eee; border: none;"
+                           >
+                </div>
+
+                <div class="col-md-6 mb-3">
+                    <label>Password</label>
+                    <input type="password"
+                           name="password"
+                           class="form-control"
+                           style="background-color: #422d2dd8; color: #eee; border: none;"
+                           >
+                </div>
+
+                <div class="col-md-12 mb-3">
+                    <label>Profile Image</label>
+                    <input type="file"
+                           name="profile_image"
+                           class="form-control"
+                           style="background-color: #422d2dd8; color: #eee; border: none;"
+                           >
+                </div>
+
+            </div>
+            <div class="d-flex justify-content-center">
+
+            <button type="submit"
+                    class="btn btn-danger px-5">
+
+                Save
+
+            </button>
+            </div>
+
+        </form>
+
+    </div>
+
+</div>
+
+{% endblock %}

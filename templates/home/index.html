@@ -1,0 +1,106 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Online Batch Management System</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="{% static 'css/home.css' %}">
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+    <!-- Devicon -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/devicon.min.css">
+</head>
+<body>
+
+    <!-- Neural Background -->
+    <canvas id="networkCanvas"></canvas>
+
+    <!-- Floating Icons Layer -->
+    <div class="floating-icons" id="floatingIcons"></div>
+
+    <!-- Navbar -->
+    <header class="navbar">
+        <div class="logo">
+            <i class="fas fa-layer-group"></i> Online Batch Management System
+        </div>
+        <button class="login-btn" onclick="openLoginModal()">Login</button>
+    </header>
+
+    <!-- Hero -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Manage Learning Batches with Smart Automation</h1>
+            <p>
+                A modern platform to manage batches, students, trainers, attendance,
+                assignments, exams, finance, requests, and communication in one place.
+            </p>
+
+            <div class="hero-tags">
+                <span>Python Full Stack</span>
+                <span>Data Analysis</span>
+                <span>Java Full Stack</span>
+                <span>Embedded Tools</span>
+            </div>
+
+            <button class="hero-btn" onclick="openLoginModal()">Get Started</button>
+        </div>
+    </section>
+
+    <!-- Login Modal -->
+    <div class="modal" id="loginModal">
+        <div class="modal-content">
+            <span class="close" onclick="closeLoginModal()">&times;</span>
+
+            <div class="modal-icon">
+                <i class="fas fa-user-shield"></i>
+            </div>
+
+            <h2>User Login</h2>
+            <p class="sub-text">Login using username or email and password</p>
+
+            {% if messages %}
+                {% for message in messages %}
+                    <p class="message">{{ message }}</p>
+                {% endfor %}
+            {% endif %}
+
+            <form method="POST" action="{% url 'login_user' %}">
+                {% csrf_token %}
+
+                <div class="form-group">
+                    <label>Username or Email</label>
+                    <div class="input-box">
+                        <i class="fas fa-user"></i>
+                        <input type="text" name="username_or_email" placeholder="Enter username or email" required>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label>Password</label>
+                    <div class="input-box">
+                        <i class="fas fa-lock"></i>
+                        <input type="password" name="password" placeholder="Enter password" required>
+                    </div>
+                </div>
+
+                <button type="submit" class="submit-btn">Login</button>
+            </form>
+        </div>
+    </div>
+
+    <script src="{% static 'js/home.js' %}"></script>
+
+    {% if messages %}
+    <script>
+        window.onload = function() {
+            openLoginModal();
+        }
+    </script>
+    {% endif %}
+</body>
+</html>

@@ -1,0 +1,23 @@
+{% extends base_template %}
+
+{% block content %}
+<div class="container py-4">
+  <div class="card border-warning">
+    <div class="card-body">
+      <h1 class="h4">Remove Batch</h1>
+      <p class="mb-4">
+        Remove batch assignment from
+        <strong>{{ student.student_id }} - {{ student.user.get_full_name|default:student.user.username }}</strong>?
+      </p>
+      <div class="mb-4">
+        <strong>Current Batch:</strong> {{ student.batch|default:"No batch assigned" }}
+      </div>
+      <form method="post">
+        {% csrf_token %}
+        <a href="{% url 'students:student_detail' student.pk %}" class="btn btn-outline-secondary">Cancel</a>
+        <button type="submit" class="btn btn-warning">Remove Batch</button>
+      </form>
+    </div>
+  </div>
+</div>
+{% endblock %}

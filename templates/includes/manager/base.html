@@ -1,0 +1,194 @@
+{% load static %}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+
+
+<title>
+    {% block title %}
+    Assistant Manager Dashboard
+    {% endblock %}
+</title>
+
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+
+<link rel="stylesheet" href="{% static 'css/admin_dashboard.css' %}">
+
+
+</head>
+
+<body>
+<style>
+               .admin-profile {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .admin-profile span {
+            color: #ffdada;
+            font-size: 15px;
+        }
+        .logout-btn {
+            background: linear-gradient(135deg, #ff3333, #9b0000);
+            color: white;
+            padding: 10px 18px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 700;
+            transition: 0.3s ease;
+        }
+
+        .logout-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 24px rgba(255, 0, 0, 0.35);
+        }
+
+        .content-wrapper {
+            padding: 30px 35px;
+        }
+</style>
+<div class="dashboard-container">
+
+
+<aside class="sidebar">
+
+    <div class="sidebar-logo">
+        
+        <h2> <i class="fas fa-user-gear"></i> Assistant Manager</h2>
+    </div>
+
+    <a href="{% url 'assistant_dashboard' %}" class="menu-item active">
+        <i class="fas fa-chart-pie"></i>
+        Dashboard
+    </a>
+
+    <p class="menu-title">User Management</p>
+
+    <a href="{% url 'manager:user_list' role='Trainer' %}" class="menu-item">
+        <i class="fas fa-user-tie"></i>
+        Trainers
+    </a>
+
+    <a href="{% url 'manager:user_list' role='Counselor' %}" class="menu-item">
+        <i class="fas fa-headset"></i>
+        Counselors
+    </a>
+
+    <p class="menu-title">Batch Management</p>
+
+    <a href="{% url 'batches:batch_list' %}" class="menu-item">
+        <i class="fas fa-layer-group"></i>
+        All Batches
+    </a>
+
+    <a href="{% url 'batches:add_batch' %}" class="menu-item">
+        <i class="fas fa-plus-circle"></i>
+        Create Batch
+    </a>
+
+    <p class="menu-title">Students</p>
+
+    <a href="{% url 'students:approval_students' %}" class="menu-item">
+        <i class="fas fa-user-clock"></i>
+        Approval List
+    </a>
+
+    <a href="{% url 'students:upcoming_students' %}" class="menu-item">
+        <i class="fas fa-calendar"></i>
+        Upcoming Batch
+    </a>
+
+    <a href="{% url 'students:ongoing_students' %}" class="menu-item">
+        <i class="fas fa-play-circle"></i>
+        Ongoing Batch
+    </a>
+
+    <a href="{% url 'students:completed_students' %}" class="menu-item">
+        <i class="fas fa-check-circle"></i>
+        Completed Batch
+    </a>
+
+    <p class="menu-title">Performance Tracking</p>
+
+    <a href="#" class="menu-item">
+        <i class="fas fa-user-check"></i>
+        Attendance
+    </a>
+
+    <a href="#" class="menu-item">
+        <i class="fas fa-file-alt"></i>
+        Exams
+    </a>
+
+    <a href="#" class="menu-item">
+        <i class="fas fa-book"></i>
+        Assignments
+    </a>
+
+    <a href="#" class="menu-item">
+        <i class="fas fa-chart-line"></i>
+        Syllabus Progress
+    </a>
+
+    <p class="menu-title">Trainer Monitoring</p>
+
+    <a href="#" class="menu-item">
+        <i class="fas fa-star"></i>
+        Trainer Performance
+    </a>
+
+    <a href="#" class="menu-item">
+        <i class="fas fa-comments"></i>
+        Student Feedback
+    </a>
+
+    <p class="menu-title">Communication</p>
+
+    <a href="#" class="menu-item">
+        <i class="fas fa-message"></i>
+        Chat
+    </a>
+
+    <a href="#" class="menu-item">
+        <i class="fas fa-bell"></i>
+        Notifications
+    </a>
+
+    <a href="{% url 'logout_user' %}" class="menu-item">
+        <i class="fas fa-right-from-bracket"></i>
+        Logout
+    </a>
+
+</aside>
+
+<!-- Main Content -->
+    <main class="main-content">
+
+        <!-- Topbar -->
+        <div class="topbar">
+            <h1 class="text-white">Assistant Manager Dashboard</h1>
+
+            <div class="admin-profile">
+                <span>Welcome, {{ request.user.username }}</span>
+                <a href="{% url 'logout_user' %}" class="logout-btn">Logout</a>
+            </div>
+        </div>
+        <div class="content-wrapper">
+
+    {% block content %}
+    {% endblock %}
+        </div>
+
+</main>
+
+
+</div>
+
+
+</body>
+</html>

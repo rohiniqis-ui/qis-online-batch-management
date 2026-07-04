@@ -1,0 +1,293 @@
+{% extends 'includes/admin/base.html' %}
+
+{% block content %}
+
+
+        <div class="content-wrapper">
+
+            <!-- Welcome -->
+            <div class="welcome-card">
+                <h2>System Control & Governance</h2>
+                <p>
+                    Admin has full system access to manage users, monitor batches,
+                    track student progress, handle requests, verify payments, and control
+                    institutional operations.
+                </p>
+            </div>
+
+            <!-- Stats -->
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <i class="fas fa-users"></i>
+                    <h3>{{ total_students|default:"0" }}</h3>
+                    <p>Total Students</p>
+                </div>
+
+                <div class="stat-card">
+                    <i class="fas fa-layer-group"></i>
+                    <h3>{{ total_batches|default:"0" }}</h3>
+                    <p>Total Batches</p>
+                </div>
+
+                <div class="stat-card">
+                    <i class="fas fa-user-tie"></i>
+                    <h3>{{ total_trainers|default:"0" }}</h3>
+                    <p>Total Trainers</p>
+                </div>
+
+                <div class="stat-card">
+                    <i class="fas fa-indian-rupee-sign"></i>
+                    <h3>₹{{ total_revenue|default:"0" }}</h3>
+                    <p>Total Revenue</p>
+                </div>
+            </div>
+
+            <!-- Admin Modules -->
+            <h2 class="section-title">
+                <i class="fas fa-screwdriver-wrench"></i>
+                Admin Management Options
+            </h2>
+
+            <div class="module-grid">
+
+                <!-- User Management -->
+                <div class="module-card">
+                    <div class="module-icon">
+                        <i class="fas fa-users-gear"></i>
+                    </div>
+                    <h3>User Management</h3>
+                    <ul>
+                        <li><i class="fas fa-check"></i> Add trainers and counselors</li>
+                        <li><i class="fas fa-check"></i> View user details</li>
+                        <li><i class="fas fa-check"></i> Edit user information</li>
+                        <li><i class="fas fa-check"></i> Activate or deactivate accounts</li>
+                    </ul>
+                    <div class="module-actions">
+                        <a href="#" class="small-btn">Add User</a>
+                        <a href="#" class="small-btn">View Users</a>
+                    </div>
+                </div>
+
+                <!-- Batch Management -->
+                <div class="module-card">
+                    <div class="module-icon">
+                        <i class="fas fa-layer-group"></i>
+                    </div>
+                    <h3>Batch Management</h3>
+                    <ul>
+                        <li><i class="fas fa-check"></i> Monitor upcoming batches</li>
+                        <li><i class="fas fa-check"></i> Monitor ongoing batches</li>
+                        <li><i class="fas fa-check"></i> Monitor completed batches</li>
+                        <li><i class="fas fa-check"></i> Track syllabus progression</li>
+                    </ul>
+                    <div class="module-actions">
+                        <a href="#" class="small-btn">View Batches</a>
+                        <a href="#" class="small-btn">Progress</a>
+                    </div>
+                </div>
+
+                <!-- Assistant Manager Oversight -->
+                <div class="module-card">
+                    <div class="module-icon">
+                        <i class="fas fa-user-gear"></i>
+                    </div>
+                    <h3>Assistant Manager Oversight</h3>
+                    <ul>
+                        <li><i class="fas fa-check"></i> Monitor assistant managers</li>
+                        <li><i class="fas fa-check"></i> Track batch creation</li>
+                        <li><i class="fas fa-check"></i> Review operational activities</li>
+                        <li><i class="fas fa-check"></i> Ensure workflow execution</li>
+                    </ul>
+                    <div class="module-actions">
+                        <a href="#" class="small-btn">Managers</a>
+                        <a href="#" class="small-btn">Activities</a>
+                    </div>
+                </div>
+
+                <!-- Student Monitoring -->
+                <div class="module-card">
+                    <div class="module-icon">
+                        <i class="fas fa-user-graduate"></i>
+                    </div>
+                    <h3>Student Monitoring</h3>
+                    <ul>
+                        <li><i class="fas fa-check"></i> Access student profiles</li>
+                        <li><i class="fas fa-check"></i> Track attendance</li>
+                        <li><i class="fas fa-check"></i> Track exam performance</li>
+                        <li><i class="fas fa-check"></i> Track assignments and feedback</li>
+                    </ul>
+                    <div class="module-actions">
+                        <a href="#" class="small-btn">Students</a>
+                        <a href="#" class="small-btn">Performance</a>
+                    </div>
+                </div>
+
+                <!-- Request Management -->
+                <div class="module-card">
+                    <div class="module-icon">
+                        <i class="fas fa-circle-question"></i>
+                    </div>
+                    <h3>Request Management</h3>
+                    <ul>
+                        <li><i class="fas fa-check"></i> View student requests</li>
+                        <li><i class="fas fa-check"></i> View trainer requests</li>
+                        <li><i class="fas fa-check"></i> View counselor requests</li>
+                        <li><i class="fas fa-check"></i> Approve, reject, or escalate</li>
+                    </ul>
+                    <div class="module-actions">
+                        <a href="#" class="small-btn">Pending</a>
+                        <a href="#" class="small-btn">Resolved</a>
+                    </div>
+                </div>
+
+                <!-- Finance -->
+                <div class="module-card">
+                    <div class="module-icon">
+                        <i class="fas fa-wallet"></i>
+                    </div>
+                    <h3>Financial Management</h3>
+                    <ul>
+                        <li><i class="fas fa-check"></i> Track fee submissions</li>
+                        <li><i class="fas fa-check"></i> Verify payment proofs</li>
+                        <li><i class="fas fa-check"></i> Monitor revenue generation</li>
+                        <li><i class="fas fa-check"></i> Generate financial reports</li>
+                    </ul>
+                    <div class="module-actions">
+                        <a href="#" class="small-btn">Payments</a>
+                        <a href="#" class="small-btn">Reports</a>
+                    </div>
+                </div>
+
+                <!-- Communication -->
+                <div class="module-card">
+                    <div class="module-icon">
+                        <i class="fas fa-comments"></i>
+                    </div>
+                    <h3>Communication</h3>
+                    <ul>
+                        <li><i class="fas fa-check"></i> View message history</li>
+                        <li><i class="fas fa-check"></i> Communicate with users</li>
+                        <li><i class="fas fa-check"></i> Role-based communication</li>
+                        <li><i class="fas fa-check"></i> Send announcements</li>
+                    </ul>
+                    <div class="module-actions">
+                        <a href="#" class="small-btn">Inbox</a>
+                        <a href="#" class="small-btn">Send Message</a>
+                    </div>
+                </div>
+
+                <!-- Notifications -->
+                <div class="module-card">
+                    <div class="module-icon">
+                        <i class="fas fa-bell"></i>
+                    </div>
+                    <h3>Notifications</h3>
+                    <ul>
+                        <li><i class="fas fa-check"></i> Batch update alerts</li>
+                        <li><i class="fas fa-check"></i> Performance update alerts</li>
+                        <li><i class="fas fa-check"></i> Request update alerts</li>
+                        <li><i class="fas fa-check"></i> Fee alert notifications</li>
+                    </ul>
+                    <div class="module-actions">
+                        <a href="#" class="small-btn">Alerts</a>
+                        <a href="#" class="small-btn">Create</a>
+                    </div>
+                </div>
+
+                <!-- Reports -->
+                <div class="module-card">
+                    <div class="module-icon">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <h3>Reports & Analytics</h3>
+                    <ul>
+                        <li><i class="fas fa-check"></i> Student progress reports</li>
+                        <li><i class="fas fa-check"></i> Batch performance reports</li>
+                        <li><i class="fas fa-check"></i> Trainer performance reports</li>
+                        <li><i class="fas fa-check"></i> Revenue summary reports</li>
+                    </ul>
+                    <div class="module-actions">
+                        <a href="#" class="small-btn">Reports</a>
+                        <a href="#" class="small-btn">Analytics</a>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- Bottom Panels -->
+            <div class="bottom-grid">
+
+                <div class="panel">
+                    <h2 class="section-title">
+                        <i class="fas fa-clock-rotate-left"></i>
+                        Recent Activities
+                    </h2>
+
+                    <div class="activity-item">
+                        <i class="fas fa-user-plus"></i>
+                        <div>
+                            <h4>New trainer/counselor management</h4>
+                            <p>Admin can add, edit, activate, or deactivate staff accounts.</p>
+                        </div>
+                    </div>
+
+                    <div class="activity-item">
+                        <i class="fas fa-layer-group"></i>
+                        <div>
+                            <h4>Batch lifecycle monitoring</h4>
+                            <p>Upcoming, ongoing, and completed batch status can be reviewed.</p>
+                        </div>
+                    </div>
+
+                    <div class="activity-item">
+                        <i class="fas fa-wallet"></i>
+                        <div>
+                            <h4>Payment verification</h4>
+                            <p>Fee submissions and payment proofs can be checked by admin.</p>
+                        </div>
+                    </div>
+
+                    <div class="activity-item">
+                        <i class="fas fa-circle-question"></i>
+                        <div>
+                            <h4>Request workflow</h4>
+                            <p>Requests can be approved, rejected, escalated, or resolved.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="panel">
+                    <h2 class="section-title">
+                        <i class="fas fa-list-check"></i>
+                        System Status
+                    </h2>
+
+                    <ul class="status-list">
+                        <li>
+                            Upcoming Batches
+                            <span class="badge">{{ upcoming_batches|default:"0" }}</span>
+                        </li>
+                        <li>
+                            Ongoing Batches
+                            <span class="badge">{{ ongoing_batches|default:"0" }}</span>
+                        </li>
+                        <li>
+                            Completed Batches
+                            <span class="badge">{{ completed_batches|default:"0" }}</span>
+                        </li>
+                        <li>
+                            Pending Requests
+                            <span class="badge">{{ pending_requests|default:"0" }}</span>
+                        </li>
+                        <li>
+                            Pending Payments
+                            <span class="badge">{{ pending_payments|default:"0" }}</span>
+                        </li>
+                    </ul>
+                </div>
+
+            </div>
+
+        </div>
+    </main>
+    {% endblock %}

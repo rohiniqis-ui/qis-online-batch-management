@@ -1,0 +1,18 @@
+{% extends base_template %}
+
+{% block content %}
+<div class="container py-4">
+  <h1 class="h3 mb-4">Assignments</h1>
+  <div class="table-responsive">
+    <table class="table table-striped"><thead class="table-light"><tr><th>Assignment</th><th>Due Date</th><th>Marks</th><th>Status</th><th>Feedback</th></tr></thead>
+      <tbody>
+        {% for row in rows %}
+          <tr><td>{{ row.assignment.title }}</td><td>{{ row.assignment.due_date }}</td><td>{{ row.evaluation.marks_obtained|default:"-" }} / {{ row.assignment.total_marks }}</td><td>{% if row.evaluation %}Evaluated{% else %}Pending{% endif %}</td><td>{{ row.evaluation.feedback|default:"-" }}</td></tr>
+        {% empty %}
+          <tr><td colspan="5" class="text-center py-4">No assignments found.</td></tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+</div>
+{% endblock %}

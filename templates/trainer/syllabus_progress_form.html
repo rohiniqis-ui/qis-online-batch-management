@@ -1,0 +1,25 @@
+{% extends base_template %}
+
+{% block content %}
+<div class="container py-4">
+  <div class="d-flex justify-content-between align-items-center mb-4">
+    <h1 class="h3 mb-0">Update Syllabus Progress</h1>
+    <a href="{% url 'trainer:assigned_batch_list' %}" class="btn btn-outline-secondary">Back</a>
+  </div>
+
+  <form method="post" class="card">
+    {% csrf_token %}
+    <div class="card-body">
+      <p><strong>Batch:</strong> {{ batch.batch_name }}</p>
+      <label for="{{ form.syllabus_progress.id_for_label }}" class="form-label">Syllabus Progress (%)</label>
+      {{ form.syllabus_progress }}
+      {% for error in form.syllabus_progress.errors %}
+        <div class="text-danger small">{{ error }}</div>
+      {% endfor %}
+    </div>
+    <div class="card-footer text-end">
+      <button type="submit" class="btn btn-primary">Update Progress</button>
+    </div>
+  </form>
+</div>
+{% endblock %}

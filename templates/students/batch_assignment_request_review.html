@@ -1,0 +1,68 @@
+{% extends base_template %}
+
+{% block content %}
+<div class="container py-4">
+  <div class="d-flex justify-content-between align-items-center mb-4">
+    <h1 class="h3 mb-0">Review Batch Request</h1>
+    <a href="{% url 'students:batch_assignment_request_list' %}" class="btn btn-outline-secondary">Back</a>
+  </div>
+
+  {% if messages %}
+    {% for message in messages %}
+      <div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">
+        {{ message }}
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+      </div>
+    {% endfor %}
+  {% endif %}
+
+  <div class="card mb-4">
+    <div class="card-body">
+      <div class="row g-3">
+        <div class="col-md-6"><strong>students:</strong> {{ assignment_request.student.student_id }} - {{ assignment_request.student.user.get_full_name|default:assignment_request.student.user.username }}</div>
+        <div class="col-md-6"><strong>Counselor:</strong> {{ assignment_request.requested_by|default:"-" }}</div>
+        <div class="col-md-6"><strong>Current Batch:</strong> {{ assignment_request.current_batch|default:"No batch" }}</div>
+        <div class="col-md-6"><strong>Requested Batch:</strong> {{ assignment_request.requested_batch }}</div>
+        <div class="col-md-6"><strong>Status:</strong> {{ assignment_request.status }}</div>
+        <div class="col-12"><strong>Request Note:</strong> {{ assignment_request.request_note|default:"-"|linebreaksbr }}</div>
+      </div>
+    </div>
+  </div>
+
+  {% if assignment_request.status == "Pending" %}
+    <form method="post" novalidate>
+      {% csrf_token %}
+      <div class="card">
+        <div class="card-body">
+          <div class="mb-3">
+            <label for="{{ form.action.id_for_label }}" class="form-label">Decision</label>
+            {{ form.action }}
+            {% for error in form.action.errors %}
+              <div class="text-danger small">{{ error }}</div>
+            {% endfor %}
+          </div>
+          <div class="mb-3">
+            <label for="{{ form.review_note.id_for_label }}" class="form-label">Review Note</label>
+            {{ form.review_note }}
+            {% for error in form.review_note.errors %}
+              <div class="text-danger small">{{ error }}</div>
+            {% endfor %}
+          </div>
+        </div>
+        <div class="card-footer text-end">
+          <a href="{% url 'students:batch_assignment_request_list' %}" class="btn btn-outline-secondary">Cancel</a>
+          <button type="submit" class="btn btn-primary">Submit Decision</button>
+        </div>
+      </div>
+    </form>
+  {% else %}
+    <div class="card">
+      <div class="card-body">
+        <div><strong>Reviewed By:</strong> {{ assignment_request.reviewed_by|default:"-" }}</div>
+        <div><strong>Reviewed At:</strong> {{ assignment_request.reviewed_at|default:"-" }}</div>
+        <div><strong>Review Note:</strong> {{ assignment_request.review_note|default:"-"|linebreaksbr }}</div>
+      </div>
+    </div>
+  {% endif %}
+</div>
+{% endblock %}

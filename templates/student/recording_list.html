@@ -1,0 +1,24 @@
+{% extends base_template %}
+
+{% block content %}
+<div class="container py-4">
+  <h1 class="h3 mb-4">Class Recordings</h1>
+  <div class="table-responsive">
+    <table class="table table-striped align-middle">
+      <thead class="table-light"><tr><th>Date</th><th>Session</th><th>Recording</th><th class="text-end">Actions</th></tr></thead>
+      <tbody>
+        {% for session in sessions %}
+          <tr>
+            <td>{{ session.session_date }}</td>
+            <td>{{ session.title }}</td>
+            <td><a href="{{ session.recording_url }}" target="_blank">Open recording</a></td>
+            <td class="text-end"><a href="{% url 'students:session_detail' session.id %}" class="btn btn-sm btn-outline-primary">Details</a></td>
+          </tr>
+        {% empty %}
+          <tr><td colspan="4" class="text-center py-4">No recordings available.</td></tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+</div>
+{% endblock %}

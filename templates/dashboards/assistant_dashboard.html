@@ -1,0 +1,231 @@
+{% extends 'includes/manager/base.html' %}
+
+{% block content %}
+
+<div class="welcome-card">
+
+    <h2>Training Operations Control Center</h2>
+
+    <p>
+        Monitor trainers, counselors, batches,
+        student performance, attendance,
+        assignments and training operations.
+    </p>
+
+</div>
+
+<div class="stats-grid">
+
+    <div class="stat-card">
+        <i class="fas fa-user-tie"></i>
+        <h3>{{ trainer_count|default:"0" }}</h3>
+        <p>Total Trainers</p>
+    </div>
+
+    <div class="stat-card">
+        <i class="fas fa-headset"></i>
+        <h3>{{ counselor_count|default:"0" }}</h3>
+        <p>Total Counselors</p>
+    </div>
+
+    <div class="stat-card">
+        <i class="fas fa-layer-group"></i>
+        <h3>{{ batch_count|default:"0" }}</h3>
+        <p>Total Batches</p>
+    </div>
+
+    <div class="stat-card">
+        <i class="fas fa-user-clock"></i>
+        <h3>{{ approval_count|default:"0" }}</h3>
+        <p>Pending Approvals</p>
+    </div>
+
+</div>
+
+<h2 class="section-title">
+    <i class="fas fa-screwdriver-wrench"></i>
+    Operations Overview
+</h2>
+
+<div class="module-grid">
+
+    <div class="module-card">
+
+        <div class="module-icon">
+            <i class="fas fa-users-cog"></i>
+        </div>
+
+        <h3>User Management</h3>
+
+        <ul>
+            <li><i class="fas fa-check"></i> Manage Trainers</li>
+            <li><i class="fas fa-check"></i> Manage Counselors</li>
+            <li><i class="fas fa-check"></i> Assign Trainers</li>
+            <li><i class="fas fa-check"></i> Monitor Activities</li>
+        </ul>
+
+    </div>
+
+    <div class="module-card">
+
+        <div class="module-icon">
+            <i class="fas fa-layer-group"></i>
+        </div>
+
+        <h3>Batch Management</h3>
+
+        <ul>
+            <li><i class="fas fa-check"></i> Create Batches</li>
+            <li><i class="fas fa-check"></i> Edit Schedules</li>
+            <li><i class="fas fa-check"></i> Assign Trainers</li>
+            <li><i class="fas fa-check"></i> Batch Summary</li>
+        </ul>
+
+    </div>
+
+    <div class="module-card">
+
+        <div class="module-icon">
+            <i class="fas fa-user-graduate"></i>
+        </div>
+
+        <h3>Student Categorization</h3>
+
+        <ul>
+            <li><i class="fas fa-check"></i> Approval List</li>
+            <li><i class="fas fa-check"></i> Upcoming Students</li>
+            <li><i class="fas fa-check"></i> Ongoing Students</li>
+            <li><i class="fas fa-check"></i> Completed Students</li>
+        </ul>
+
+    </div>
+
+    <div class="module-card">
+
+        <div class="module-icon">
+            <i class="fas fa-chart-line"></i>
+        </div>
+
+        <h3>Performance Tracking</h3>
+
+        <ul>
+            <li><i class="fas fa-check"></i> Attendance</li>
+            <li><i class="fas fa-check"></i> Exams</li>
+            <li><i class="fas fa-check"></i> Assignments</li>
+            <li><i class="fas fa-check"></i> Syllabus Completion</li>
+        </ul>
+
+    </div>
+
+    <div class="module-card">
+
+        <div class="module-icon">
+            <i class="fas fa-chalkboard-teacher"></i>
+        </div>
+
+        <h3>Trainer Monitoring</h3>
+
+        <ul>
+            <li><i class="fas fa-check"></i> Class Schedules</li>
+            <li><i class="fas fa-check"></i> Coverage Tracking</li>
+            <li><i class="fas fa-check"></i> Student Feedback</li>
+            <li><i class="fas fa-check"></i> Trainer Evaluation</li>
+        </ul>
+
+    </div>
+
+    <div class="module-card">
+
+        <div class="module-icon">
+            <i class="fas fa-comments"></i>
+        </div>
+
+        <h3>Communication</h3>
+
+        <ul>
+            <li><i class="fas fa-check"></i> Trainer Chat</li>
+            <li><i class="fas fa-check"></i> Counselor Chat</li>
+            <li><i class="fas fa-check"></i> Student Chat</li>
+            <li><i class="fas fa-check"></i> Issue Resolution</li>
+        </ul>
+
+    </div>
+
+</div>
+
+<div class="bottom-grid">
+
+    <div class="panel">
+
+        <h2 class="section-title">
+            <i class="fas fa-clock-rotate-left"></i>
+            Recent Activities
+        </h2>
+
+        <div class="activity-item">
+            <i class="fas fa-user-plus"></i>
+            <div>
+                <h4>Trainer Assigned</h4>
+                <p>Python Full Stack batch trainer assigned.</p>
+            </div>
+        </div>
+
+        <div class="activity-item">
+            <i class="fas fa-layer-group"></i>
+            <div>
+                <h4>New Batch Created</h4>
+                <p>Data Analytics Morning Batch created.</p>
+            </div>
+        </div>
+
+        <div class="activity-item">
+            <i class="fas fa-file-alt"></i>
+            <div>
+                <h4>Assignment Review</h4>
+                <p>Student assignment submissions reviewed.</p>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="panel">
+
+        <h2 class="section-title">
+            <i class="fas fa-list-check"></i>
+            Operations Status
+        </h2>
+
+        <ul class="status-list">
+
+            <li>
+                Upcoming Batches
+                <span class="badge">{{ upcoming_batches|default:"0" }}</span>
+            </li>
+
+            <li>
+                Ongoing Batches
+                <span class="badge">{{ ongoing_batches|default:"0" }}</span>
+            </li>
+
+            <li>
+                Completed Batches
+                <span class="badge">{{ completed_batches|default:"0" }}</span>
+            </li>
+
+            <li>
+                Pending Approvals
+                <span class="badge">{{ approval_count|default:"0" }}</span>
+            </li>
+
+            <li>
+                Low Performing Students
+                <span class="badge">{{ low_performing|default:"0" }}</span>
+            </li>
+
+        </ul>
+
+    </div>
+
+</div>
+
+{% endblock %}

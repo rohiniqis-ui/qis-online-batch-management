@@ -1,0 +1,14 @@
+{% extends base_template %}
+
+{% block content %}
+<div class="container py-4">
+  <h1 class="h3 mb-4">Events</h1>
+  <div class="list-group">
+    {% for event in events %}
+      <div class="list-group-item"><div class="d-flex justify-content-between"><strong>{{ event.title }}</strong><span>{{ event.event_date }}</span></div><div>{{ event.description|default:"-" }}</div></div>
+    {% empty %}
+      <div class="list-group-item text-muted">No events found.</div>
+    {% endfor %}
+  </div>
+</div>
+{% endblock %}

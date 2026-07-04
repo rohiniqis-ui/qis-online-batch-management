@@ -1,0 +1,21 @@
+{% extends base_template %}
+
+{% block content %}
+<div class="container py-4">
+  <div class="card border-danger">
+    <div class="card-body">
+      <h1 class="h4">Delete Student</h1>
+      <p class="mb-4">
+        Are you sure you want to delete
+        <strong>{{ student.student_id }} - {{ student.user.get_full_name|default:student.user.username }}</strong>?
+        This will soft delete the profile.
+      </p>
+      <form method="post">
+        {% csrf_token %}
+        <a href="{% url 'students:student_detail' student.pk %}" class="btn btn-outline-secondary">Cancel</a>
+        <button type="submit" class="btn btn-danger">Delete</button>
+      </form>
+    </div>
+  </div>
+</div>
+{% endblock %}

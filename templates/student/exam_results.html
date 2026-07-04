@@ -1,0 +1,12 @@
+{% extends base_template %}
+
+{% block content %}
+<div class="container py-4">
+  <h1 class="h3 mb-4">Exam Results</h1>
+  <div class="table-responsive">
+    <table class="table table-striped"><thead class="table-light"><tr><th>Exam</th><th>Date</th><th>Marks</th><th>Remarks</th></tr></thead>
+      <tbody>{% for result in results %}<tr><td>{{ result.exam.title }}</td><td>{{ result.exam.exam_date }}</td><td>{{ result.marks_obtained|default:"-" }} / {{ result.exam.total_marks }}</td><td>{{ result.remarks|default:"-" }}</td></tr>{% empty %}<tr><td colspan="4" class="text-center py-4">No exam results found.</td></tr>{% endfor %}</tbody>
+    </table>
+  </div>
+</div>
+{% endblock %}

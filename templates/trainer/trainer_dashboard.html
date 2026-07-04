@@ -1,0 +1,26 @@
+{% extends 'includes/trainers/base.html' %}
+
+{% block content %}
+<div class="card bg-dark text-white border-danger mb-4">
+  <div class="card-body">
+    <h2>Trainer Dashboard</h2>
+    <p>Conduct training sessions, manage academic progress and evaluate student performance.</p>
+  </div>
+</div>
+
+<div class="row g-3 mb-4">
+  <div class="col-md-3"><div class="card"><div class="card-body text-center"><h3>{{ assigned_batches }}</h3><p>Assigned Batches</p></div></div></div>
+  <div class="col-md-3"><div class="card"><div class="card-body text-center"><h3>{{ total_students }}</h3><p>Students</p></div></div></div>
+  <div class="col-md-3"><div class="card"><div class="card-body text-center"><h3>{{ today_classes }}</h3><p>Today's Classes</p></div></div></div>
+  <div class="col-md-3"><div class="card"><div class="card-body text-center"><h3>{{ pending_evaluation }}</h3><p>Pending Evaluation</p></div></div></div>
+</div>
+
+<div class="row g-4">
+  <div class="col-md-6"><div class="card"><div class="card-body"><h5>Batch & Student Access</h5><ul><li><a href="{% url 'trainer:assigned_batch_list' %}">View Assigned Batches</a></li><li>Access Student Lists</li></ul></div></div></div>
+  <div class="col-md-6"><div class="card"><div class="card-body"><h5>Syllabus Management</h5><ul><li>Update Progress</li><li>Complete Topics</li></ul></div></div></div>
+  <div class="col-md-6"><div class="card"><div class="card-body"><h5>Class Management</h5><ul><li>Meeting Links</li><li>Schedule Classes</li><li>Upload Recordings</li></ul></div></div></div>
+  <div class="col-md-6"><div class="card"><div class="card-body"><h5>Performance Evaluation</h5><ul><li>Attendance</li><li>Assignments</li><li>Exams</li></ul></div></div></div>
+  <div class="col-md-6"><div class="card"><div class="card-body"><h5>Feedback Review</h5><ul><li>Review Feedback</li><li>Improve Teaching</li></ul></div></div></div>
+  <div class="col-md-6"><div class="card"><div class="card-body"><h5>Communication & Notifications</h5><ul><li>Chat</li><li>Requests</li><li>Notifications</li></ul></div></div></div>
+</div>
+{% endblock %}

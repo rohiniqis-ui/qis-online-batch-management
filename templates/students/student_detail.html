@@ -1,0 +1,80 @@
+{% extends base_template %}
+
+{% block content %}
+<div class="container py-4">
+  <div class="d-flex justify-content-between align-items-center mb-4">
+    <h1 class="h3 mb-0">{{ student.student_id }}</h1>
+    <div>
+      <a href="{% url 'students:student_update' student.pk %}" class="btn btn-primary">Edit</a>
+      <a href="{% url 'students:student_delete' student.pk %}" class="btn btn-outline-danger">Delete</a>
+      <a href="{% url 'students:student_list' %}" class="btn btn-outline-secondary">Back</a>
+    </div>
+  </div>
+
+  {% if messages %}
+    {% for message in messages %}
+      <div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">
+        {{ message }}
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+      </div>
+    {% endfor %}
+  {% endif %}
+
+  <div class="card mb-4">
+    <div class="card-body">
+      <h2 class="h5 mb-3">Profile</h2>
+      <div class="row g-3">
+        <div class="col-md-4"><strong>Name:</strong> {{ student.user.get_full_name|default:student.user.username }}</div>
+        <div class="col-md-4"><strong>Email:</strong> {{ student.user.email }}</div>
+        <div class="col-md-4"><strong>Status:</strong> {{ student.status }}</div>
+        <div class="col-md-4"><strong>Batch:</strong> {{ student.batch|default:"-" }}</div>
+        <div class="col-md-4"><strong>Counselor:</strong> {{ student.counselor|default:"-" }}</div>
+        <div class="col-md-4"><strong>Admission Date:</strong> {{ student.admission_date|default:"-" }}</div>
+        <div class="col-md-4"><strong>Date of Birth:</strong> {{ student.date_of_birth|default:"-" }}</div>
+        <div class="col-md-4"><strong>Gender:</strong> {{ student.gender|default:"-" }}</div>
+        <div class="col-md-4"><strong>Qualification:</strong> {{ student.qualification|default:"-" }}</div>
+        <div class="col-md-4"><strong>College:</strong> {{ student.college|default:"-" }}</div>
+      </div>
+    </div>
+  </div>
+
+  {% if is_counselor_portal %}
+    <div class="card mb-4">
+      <div class="card-body">
+        <div class="d-flex justify-content-between align-items-center">
+          <div>
+            <h2 class="h5 mb-1">Batch Allocation</h2>
+            <div><strong>Current Batch:</strong> {{ student.batch|default:"No batch assigned" }}</div>
+          </div>
+          <div>
+            {% if student.has_pending_batch_request %}
+              <span class="btn btn-outline-secondary disabled">Batch request pending</span>
+            {% elif student.batch %}
+              <a href="{% url 'students:student_batch_transfer' student.pk %}" class="btn btn-success">Request Transfer</a>
+              <a href="{% url 'students:student_batch_remove' student.pk %}" class="btn btn-outline-warning">Remove Batch</a>
+            {% else %}
+              <a href="{% url 'students:student_batch_assign' student.pk %}" class="btn btn-success">Request Batch</a>
+            {% endif %}
+          </div>
+        </div>
+      </div>
+    </div>
+  {% endif %}
+
+  <div class="card">
+    <div class="card-body">
+      <h2 class="h5 mb-3">Contact</h2>
+      <div class="row g-3">
+        <div class="col-md-4"><strong>Guardian:</strong> {{ student.guardian_name|default:"-" }}</div>
+        <div class="col-md-4"><strong>Guardian Phone:</strong> {{ student.guardian_phone|default:"-" }}</div>
+        <div class="col-md-4"><strong>Emergency Contact:</strong> {{ student.emergency_contact|default:"-" }}</div>
+        <div class="col-md-4"><strong>City:</strong> {{ student.city|default:"-" }}</div>
+        <div class="col-md-4"><strong>State:</strong> {{ student.state|default:"-" }}</div>
+        <div class="col-md-4"><strong>Pincode:</strong> {{ student.pincode|default:"-" }}</div>
+        <div class="col-12"><strong>Address:</strong> {{ student.address|default:"-"|linebreaksbr }}</div>
+        <div class="col-12"><strong>Remarks:</strong> {{ student.remarks|default:"-"|linebreaksbr }}</div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

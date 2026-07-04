@@ -1,0 +1,6 @@
+{% if request.user.role == "Assistant Manager" or request.user.role == "Counselor" %}
+  <a href="{% url 'students:batch_assignment_request_list' %}" class="nav-link">
+    <i class="fas fa-clipboard-check"></i>
+    Batch Requests
+  </a>
+{% endif %}
